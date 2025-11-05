@@ -4,75 +4,99 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy - Promptly</title>
+  <meta name="description" content="Read the Privacy Policy for Promptly, a Discord AI bot that lets you securely and easily communicate with OpenAI/ChatGPT.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-  <nav>
+  <nav aria-label="Main navigation" id="mainNav">
     <div class="logo">Promptly</div>
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#welcome-section">Home</a></li>
+      <li><a href="index.html#contact-section">Contact</a></li>
       <li><a href="tos.html">Terms of Service</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
-      <li><button id="darkModeToggle">🌙</button></li>
+      <li>
+        <button id="darkModeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      </li>
     </ul>
   </nav>
+  <div id="scrollProgress"></div>
 </header>
 
-<section id="privacy" class="section">
-  <h1>Privacy Policy</h1>
-  <p>Last Updated: November 4, 2025</p>
+<main>
+  <section id="privacy-section" class="fade-section" aria-labelledby="privacy-heading">
+    <h1 id="privacy-heading">Privacy Policy</h1>
+    <p>Last Updated: November 5, 2025</p>
 
-  <p><strong>Promptly</strong> (“we”, “our”, or “the bot”) respects your privacy and is committed to protecting your personal information. This Privacy Policy explains what data is collected, how it is stored, and how it is used.</p>
+    <h2>1. Introduction</h2>
+    <p>This Privacy Policy explains how Promptly collects, uses, and protects your data when you interact with the bot.</p>
 
-  <h2>1. Information We Collect</h2>
-  <ul>
-    <li><strong>Prompt IDs and OpenAI API keys:</strong> Users may save their personal OpenAI API key and prompt IDs. These are encrypted per user using AES-256.</li>
-    <li><strong>User identifiers:</strong> Discord user ID and server ID may be stored to allow bot functionality.</li>
-    <li><strong>Commands usage:</strong> Logs of bot commands such as <code>/chat</code>, <code>/setprompt</code>, <code>/setkey</code>, <code>/deleteprompt</code>, <code>/deletekey</code>, and <code>/help</code> may be temporarily stored for functionality purposes.</li>
-  </ul>
+    <h2>2. Information We Collect</h2>
+    <ul>
+      <li>Promptly may store prompt IDs and OpenAI API keys provided by users to enable bot functionality.</li>
+      <li>Data is stored securely on a per-user basis and encrypted to protect your privacy.</li>
+    </ul>
 
-  <h2>2. How We Store Your Data</h2>
-  <ul>
-    <li>Data is stored in <code>user_data.json</code> on a persistent disk compatible with Render hosting.</li>
-    <li>Sensitive information like API keys is encrypted using AES-256 encryption.</li>
-    <li>Ephemeral messages are used for commands involving sensitive data to ensure information is not exposed in chat logs.</li>
-  </ul>
+    <h2>3. How We Use Your Information</h2>
+    <ul>
+      <li>Data is used solely to provide bot functionality, such as running <code>/chat</code> and managing prompts.</li>
+      <li>Your information is never shared with third parties outside of what is required for OpenAI API integration.</li>
+    </ul>
 
-  <h2>3. How We Use Your Data</h2>
-  <ul>
-    <li>To provide the core functionality of the bot, including saving prompts, running <code>/chat</code>, and managing user commands.</li>
-    <li>To maintain and improve the bot, troubleshoot issues, and ensure secure operations.</li>
-  </ul>
+    <h2>4. Data Retention</h2>
+    <ul>
+      <li>Users may delete stored data at any time using bot commands.</li>
+      <li>We retain data only as required to provide service and comply with applicable law.</li>
+    </ul>
 
-  <h2>4. Data Sharing</h2>
-  <ul>
-    <li>We do not sell, trade, or share your personal data with third parties.</li>
-    <li>Data may be accessed internally for operational purposes by the bot’s developer(s).</li>
-  </ul>
+    <h2>5. Security</h2>
+    <ul>
+      <li>All user data is encrypted in storage to prevent unauthorized access.</li>
+      <li>Users are responsible for securing their own OpenAI API keys and device access.</li>
+    </ul>
 
-  <h2>5. Data Deletion</h2>
-  <ul>
-    <li>You may delete your stored prompts or API keys at any time using <code>/deleteprompt</code> or <code>/deletekey</code>.</li>
-    <li>Upon deletion, your data will be removed from storage promptly.</li>
-  </ul>
+    <h2>6. Third-Party Services</h2>
+    <p>Promptly uses the OpenAI API to provide AI functionality. Your data may be processed by OpenAI as required to fulfill requests.</p>
 
-  <h2>6. Security</h2>
-  <ul>
-    <li>AES-256 encryption is used for sensitive data.</li>
-    <li>Ephemeral messages protect sensitive commands from being visible to other users.</li>
-  </ul>
+    <h2>7. Children’s Privacy</h2>
+    <p>Promptly is not intended for children under the age of 13. We do not knowingly collect personal information from children.</p>
 
-  <h2>7. Updates to Privacy Policy</h2>
-  <p>We may update this Privacy Policy occasionally. Users will be informed through the bot or via website updates.</p>
+    <h2>8. Changes to This Policy</h2>
+    <p>This Privacy Policy may be updated at any time. Continued use indicates acceptance of the updated policy.</p>
 
-  <h2>8. Contact</h2>
-  <p>If you have questions about this Privacy Policy, contact the developer via Discord or the website.</p>
-</section>
+    <h2>9. Contact</h2>
+    <ul>
+      <li><strong>Discord:</strong> <code id="discordTag" class="copyable" title="Click to copy">.darrk.</code></li>
+      <li><strong>Email:</strong> <a href="mailto:darrkit@gmail.com" class="copyable" title="Click to copy">darrkit@gmail.com</a></li>
+    </ul>
+  </section>
+</main>
 
-<button id="backToTop">&#8679;</button>
+<button id="backToTop" aria-label="Back to top" title="Back to top">&#8679;</button>
 
-<script src="script.js"></script>
+<footer class="site-footer fade-section" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Site Footer</h2>
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="index.html#welcome-section">Home</a> |
+      <a href="index.html#contact-section">Contact</a> |
+      <a href="tos.html">Terms of Service</a> |
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-info">
+      <span>Promptly v1.0.0</span> |
+      <span>&copy; 2025 Darrk</span>
+    </div>
+    <div class="footer-contact">
+      <strong>Discord:</strong> <code id="discordTagFooter" class="copyable" title="Click to copy">.darrk.</code> |
+      <strong>Email:</strong> <a href="mailto:darrkit@gmail.com" class="copyable" title="Click to copy">darrkit@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toastContainer"></div>
+<script src="script.js" defer></script>
 </body>
 </html>
