@@ -1,7 +1,7 @@
 // -------------------- Dark Mode Toggle --------------------
 const darkModeButtons = document.querySelectorAll("#darkModeToggle");
 
-// Apply saved preference on page load
+// Apply saved dark mode preference on page load
 if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
 }
@@ -10,7 +10,7 @@ darkModeButtons.forEach(btn => {
     btn.addEventListener("click", () => {
         document.body.classList.toggle("dark-mode");
 
-        // Save preference in localStorage
+        // Save the preference
         if (document.body.classList.contains("dark-mode")) {
             localStorage.setItem("darkMode", "enabled");
         } else {
@@ -28,9 +28,7 @@ backToTopButtons.forEach(btn => {
         else btn.style.display = "none";
     };
 
-    // Initial check
     toggleButton();
-
     window.addEventListener("scroll", toggleButton);
 
     btn.addEventListener("click", () => {
