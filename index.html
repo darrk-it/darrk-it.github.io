@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promptly - Discord AI Bot</title>
+  <meta name="description" content="Promptly is a Discord bot that allows you to securely and easily communicate with OpenAI/ChatGPT.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-  <nav>
+  <nav aria-label="Main navigation">
     <div class="logo">Promptly</div>
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -20,23 +21,25 @@
   </nav>
 </header>
 
-<section>
-  <h1>Welcome to Promptly!</h1>
-  <p>Promptly is a Discord bot that lets you communicate with OpenAI/ChatGPT securely and easily.</p>
-  <a href="https://discord.com/oauth2/authorize?client_id=1435372712515338250&scope=bot&permissions=0" class="invite-button">Invite Promptly</a>
-</section>
+<main>
+  <section aria-labelledby="welcome-heading">
+    <h1 id="welcome-heading">Welcome to Promptly!</h1>
+    <p>Promptly is a Discord bot that lets you communicate with OpenAI/ChatGPT securely and easily.</p>
+    <a href="https://discord.com/oauth2/authorize?client_id=1435372712515338250&scope=bot&permissions=0" class="invite-button" target="_blank" rel="noopener noreferrer">Invite Promptly</a>
+  </section>
 
-<section class="contact-card">
-  <h2>Contact the Developer</h2>
-  <p>If you have questions, need support, or want to provide feedback, you can reach the developer via the following methods:</p>
-  <ul>
-    <li><strong>Discord:</strong> <code>.darrk.</code></li>
-    <li><strong>Email:</strong> <a href="mailto:darrkit@gmail.com">darrkit@gmail.com</a></li>
-  </ul>
-</section>
+  <section class="contact-card" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact the Developer</h2>
+    <p>If you have questions, need support, or want to provide feedback, you can reach the developer via the following methods:</p>
+    <ul>
+      <li><strong>Discord:</strong> <code>.darrk.</code></li>
+      <li><strong>Email:</strong> <a href="mailto:darrkit@gmail.com">darrkit@gmail.com</a></li>
+    </ul>
+  </section>
+</main>
 
 <button id="backToTop" aria-label="Back to top">&#8679;</button>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 </body>
 </html>
