@@ -1,32 +1,45 @@
-/* Smooth transition for dark mode */
-body {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* DARK MODE */
-body.dark-mode {
-  background-color: #121212;
-  color: #f0f0f0;
-}
-
-/* BACK TO TOP BUTTON */
-#backToTop {
+/* TOAST CONTAINER */
+#toastContainer {
   position: fixed;
-  bottom: 40px;
-  right: 40px;
-  padding: 10px 15px;
-  font-size: 1.5rem;
-  background-color: #555;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: none; /* hidden by default */
-  z-index: 1000;
-  transition: background-color 0.3s, transform 0.3s;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2000;
 }
 
-#backToTop:hover {
-  background-color: #333;
-  transform: scale(1.1);
+/* TOAST BASE STYLE */
+.toast {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  min-width: 200px;
+  max-width: 300px;
+  color: #fff;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  cursor: default;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* TOAST TYPES */
+.toast.success { background-color: #4caf50; }
+.toast.error   { background-color: #f44336; }
+.toast.info    { background-color: #2196f3; }
+
+/* SHOW ANIMATION */
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ICON STYLE (optional) */
+.toast span.icon {
+  margin-right: 10px;
+  font-size: 1.2rem;
 }
