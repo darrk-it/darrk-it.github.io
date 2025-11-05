@@ -9,3 +9,4 @@ header a, header button { text-decoration:none; color:#333; border:none; backgro
 body.dark-mode { background:#121212; color:#e0e0e0; }
 body.dark-mode header { background:#1f1f1f; }
 body.dark-mode #backToTop { background:#444; }
+.fade-in { opacity:0; transform: translateY(20px); transition: opacity 1s ease-out, transform 1s ease-out; }
