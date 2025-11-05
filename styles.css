@@ -351,117 +351,90 @@ body.dark-mode .feature-card {
   font-size: 2.5rem;
 }
 
-/* =========================
-   TOS & PRIVACY PAGES
-========================= */
-.tos-privacy-container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 30px 25px;
-  background-color: #fafafa;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-  line-height: 1.8;
-  transition: background-color 0.3s, color 0.3s;
-}
-body.dark-mode .tos-privacy-container {
-  background-color: #1f1f1f;
-  color: #e0e0e0;
-}
-.tos-privacy-container h1,
-.tos-privacy-container h2,
-.tos-privacy-container h3 {
-  margin-bottom: 20px;
-  font-weight: 600;
-  color: #222;
-}
-body.dark-mode .tos-privacy-container h1,
-body.dark-mode .tos-privacy-container h2,
-body.dark-mode .tos-privacy-container h3 {
-  color: #f0f0f0;
-}
-.tos-privacy-container p {
-  margin-bottom: 16px;
-  font-size: 1rem;
-  color: #333;
-}
-body.dark-mode .tos-privacy-container p {
-  color: #ccc;
-}
-.tos-privacy-container ul,
-.tos-privacy-container ol {
-  margin-left: 20px;
-  margin-bottom: 16px;
-}
-.tos-privacy-container a {
-  color: #007bff;
-  text-decoration: underline;
-  transition: color 0.2s;
-}
-body.dark-mode .tos-privacy-container a {
-  color: #80c0ff;
-}
-.tos-privacy-container a:hover,
-.tos-privacy-container a:focus {
-  text-decoration: none;
-  color: #0056b3;
-}
-body.dark-mode .tos-privacy-container a:hover,
-body.dark-mode .tos-privacy-container a:focus {
-  color: #3399ff;
-}
-.tos-privacy-section {
-  margin-bottom: 30px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0;
-}
-body.dark-mode .tos-privacy-section {
-  border-bottom: 1px solid #333;
-}
-.tos-privacy-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 25px;
-}
-.tos-privacy-buttons button {
-  padding: 10px 22px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  background-color: #007bff;
-  color: #fff;
-  transition: background-color 0.3s, transform 0.2s;
-}
-.tos-privacy-buttons button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-.tos-privacy-buttons button:focus-visible {
-  outline: 2px solid #007bff;
-  outline-offset: 2px;
+.tos-privacy-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 600px) {
-  #about-bot-section {
-    padding: 40px 15px;
-  }
-  #about-bot-section h2 {
-    font-size: 1.6rem;
-  }
-  .feature-card h3 {
-    font-size: 1.1rem;
-  }
-  .feature-card p {
-    font-size: 0.9rem;
-  }
-  .tos-privacy-container {
-    padding: 20px 15px;
-    margin: 20px auto;
-  }
-  .tos-privacy-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
+.tos-privacy-container ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tos-privacy-container ul li:last-child {
+  border-bottom: none;
+}
+
+.tos-privacy-container ul li .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  min-height: 28px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+/* Status Colors */
+.tos-privacy-container ul li.allowed .icon {
+  background-color: #28a745; /* green */
+}
+
+.tos-privacy-container ul li.restricted .icon {
+  background-color: #dc3545; /* red */
+}
+
+.tos-privacy-container ul li.info .icon {
+  background-color: #17a2b8; /* blue */
+}
+
+/* Text colors for clarity (optional) */
+.tos-privacy-container ul li.allowed {
+  color: #155724;
+}
+
+.tos-privacy-container ul li.restricted {
+  color: #721c24;
+}
+
+.tos-privacy-container ul li.info {
+  color: #0c5460;
+}
+
+/* Dark Mode */
+body.dark-mode .tos-privacy-container ul li {
+  border-bottom: 1px solid #333;
+}
+
+body.dark-mode .tos-privacy-container ul li.allowed .icon {
+  background-color: #28d67b;
+}
+
+body.dark-mode .tos-privacy-container ul li.restricted .icon {
+  background-color: #ff6b6b;
+}
+
+body.dark-mode .tos-privacy-container ul li.info .icon {
+  background-color: #5bc0de;
+}
+
+body.dark-mode .tos-privacy-container ul li.allowed {
+  color: #a8f3b1;
+}
+
+body.dark-mode .tos-privacy-container ul li.restricted {
+  color: #ff8a8a;
+}
+
+body.dark-mode .tos-privacy-container ul li.info {
+  color: #9ad6e0;
 }
