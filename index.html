@@ -1,43 +1,268 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Promptly - Discord AI Bot</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+const { Client, GatewayIntentBits, SlashCommandBuilder, REST, Routes } = require('discord.js');
+const https = require('https');
+const fs = require('fs');
+const crypto = require('crypto');
 
-<header>
-  <nav>
-    <div class="logo">Promptly</div>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="tos.html">Terms of Service</a></li>
-      <li><a href="privacy.html">Privacy Policy</a></li>
-      <li><button id="darkModeToggle">🌙</button></li>
-    </ul>
-  </nav>
-</header>
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
-<section class="section">
-  <h1>Welcome to Promptly!</h1>
-  <p>Promptly is a Discord bot that lets you communicate with OpenAI/ChatGPT securely and easily.</p>
-  <a href="https://discord.com/oauth2/authorize?client_id=1435372712515338250&scope=bot" class="invite-button">Invite Promptly</a>
-</section>
+// ====== ENCRYPTION SETTINGS ======
+const algorithm = 'aes-256-cbc';
+const encryptionKey = crypto.createHash('sha256').update('your_secret_key_here').digest();
+const iv = Buffer.alloc(16, 0);
 
-<!-- Contact the Developer -->
-<section class="section contact-card">
-  <h2>Contact the Developer</h2>
-  <p>If you have questions, need support, or want to provide feedback, you can reach the developer via the following methods:</p>
-  <ul>
-    <li><strong>Discord:</strong> <code>.darrk.</code></li>
-    <li><strong>Email:</strong> <a href="mailto:darrkit@gmail.com">darrkit@gmail.com</a></li>
-  </ul>
-</section>
+function encrypt(text) {
+    const cipher = crypto.createCipheriv(algorithm, encryptionKey, iv);
+    let encrypted = cipher.update(text, 'utf8', 'hex');
+    encrypted += cipher.final('hex');
+    return encrypted;
+}
 
-<button id="backToTop">&#8679;</button>
+function decrypt(text) {
+    const decipher = crypto.createDecipheriv(algorithm, encryptionKey, iv);
+    let decrypted = decipher.update(text, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    return decrypted;
+}
 
-<script src="script.js"></script>
-</body>
-</html>
+// ====== DATA STORAGE ======
+let userData = {};
+const userDataPath = './userData.json';
+
+function loadUserData() {
+    if (fs.existsSync(userDataPath)) {
+        userData = JSON.parse(fs.readFileSync(userDataPath));
+    }
+}
+
+async function saveUserData() {
+    fs.writeFileSync(userDataPath, JSON.stringify(userData, null, 2));
+}
+
+loadUserData();
+
+// ====== COMMAND REGISTRATION ======
+const commandList = [
+    new SlashCommandBuilder()
+        .setName('setkey')
+        .setDescription('Save your OpenAI API key securely.')
+        .addStringOption(option => option.setName('key').setDescription('Your OpenAI API key').setRequired(true)),
+
+    new SlashCommandBuilder()
+        .setName('setprompt')
+        .setDescription('Save a custom system prompt (max 4000 characters).')
+        .addStringOption(option => option.setName('prompt_id').setDescription('Custom prompt text').setRequired(true)),
+
+    new SlashCommandBuilder()
+        .setName('chat')
+        .setDescription('Start chatting with your custom prompt.')
+        .addStringOption(option => option.setName('prompt_id').setDescription('Temporary prompt (optional)')),
+
+    new SlashCommandBuilder()
+        .setName('promptlimit')
+        .setDescription('Tell you the max character length allowed for /setprompt'),
+
+    new SlashCommandBuilder()
+        .setName('help')
+        .setDescription('Show all available commands and what they do.')
+];
+
+const rest = new REST({ version: '10' }).setToken('your_discord_bot_token_here');
+
+(async () => {
+    try {
+        await rest.put(Routes.applicationCommands('your_client_id_here'), { body: commandList });
+        console.log('✅ Slash commands registered globally.');
+    } catch (err) {
+        console.error('Failed to register commands:', err);
+    }
+})();
+
+// ====== COMMAND HANDLING ======
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isChatInputCommand()) return;
+
+    const userId = interaction.user.id;
+
+    switch (interaction.commandName) {
+
+        case 'setkey': {
+            const key = interaction.options.getString('key');
+            userData[userId] = userData[userId] || {};
+            userData[userId].openaiKey = encrypt(key);
+            await saveUserData();
+            await interaction.reply({ content: '✅ Your OpenAI API key has been securely saved.', ephemeral: true });
+            break;
+        }
+
+        case 'setprompt': {
+            const prompt = interaction.options.getString('prompt_id');
+            const userMention = `<@${interaction.user.id}>`;
+
+            const charCount = prompt.length;
+            const charLimit = 4000;
+
+            if (charCount > charLimit) {
+                await interaction.reply({
+                    content: `${userMention}, your prompt is **too long** — you used **${charCount} / ${charLimit} characters**. ❌\nPlease shorten it and try again.`,
+                    ephemeral: true
+                });
+                break;
+            }
+
+            userData[userId] = userData[userId] || {};
+            userData[userId].promptId = prompt;
+            await saveUserData();
+
+            await interaction.reply({
+                content: `${userMention}, your custom prompt has been saved successfully! ✅\nCharacter count: **${charCount} / ${charLimit}**.`,
+                ephemeral: true
+            });
+            break;
+        }
+
+        case 'promptlimit': {
+            const userMention = `<@${interaction.user.id}>`;
+            await interaction.reply({
+                content: `${userMention}, the maximum character limit for \`/setprompt\` is **4000 characters**. ✨`,
+                ephemeral: true
+            });
+            break;
+        }
+
+        case 'chat': {
+            await handleChatCommand(interaction, userId);
+            break;
+        }
+
+        case 'help': {
+            // Dynamically build help info from commandList
+            let helpText = '**🤖 Available Commands**\n';
+            for (const cmd of commandList) {
+                helpText += `\n\`/${cmd.name}\`\n• ${cmd.description}`;
+                if (cmd.name === 'setprompt') helpText += '\n  ↳ Use this to store your bot’s "personality" or system context.';
+                if (cmd.name === 'chat') helpText += '\n  ↳ Type "exit" or "stop" to end. Sessions expire after 5 minutes.';
+                if (cmd.name === 'setkey') helpText += '\n  ↳ You must do this before using /chat.';
+                helpText += '\n';
+            }
+
+            await interaction.reply({
+                content: helpText.trim(),
+                ephemeral: true
+            });
+            break;
+        }
+
+        default:
+            await interaction.reply({ content: 'Unknown command.', ephemeral: true });
+            break;
+    }
+});
+
+// ====== /chat COMMAND HANDLER ======
+async function handleChatCommand(interaction, userId) {
+    let customPrompt = interaction.options.getString('prompt_id')?.trim();
+
+    const encryptedKey = userData[userId]?.openaiKey;
+    if (!encryptedKey) {
+        await interaction.reply({
+            content: 'You have no OpenAI API key saved. Use `/setkey` first.',
+            ephemeral: true
+        });
+        return;
+    }
+
+    let openaiKey;
+    try {
+        openaiKey = decrypt(encryptedKey);
+    } catch (err) {
+        console.error('Failed to decrypt OpenAI key:', err);
+        await interaction.reply({
+            content: 'Failed to read your OpenAI API key. Please re-set it with `/setkey`.',
+            ephemeral: true
+        });
+        return;
+    }
+
+    if (customPrompt) {
+        userData[userId].sessionPrompt = customPrompt;
+    } else if (userData[userId]?.promptId) {
+        customPrompt = userData[userId].promptId;
+    }
+
+    if (!customPrompt) {
+        await interaction.reply({
+            content: 'No custom prompt found. Use `/setprompt` or provide one directly with `/chat`.',
+            ephemeral: true
+        });
+        return;
+    }
+
+    await interaction.reply({
+        content: `**System prompt active:**\n\`\`\`\n${customPrompt}\n\`\`\`\nWhat would you like to ask? (Type "exit" to end the chat)`,
+        ephemeral: true
+    });
+
+    const channel = await client.channels.fetch(interaction.channelId);
+    const filter = m => m.author.id === userId && m.channelId === interaction.channelId;
+    const collector = channel.createMessageCollector({ filter, time: 300000 }); // 5 minutes
+
+    collector.on('collect', async m => {
+        const userMessage = m.content.trim();
+        if (['exit', 'stop'].includes(userMessage.toLowerCase())) {
+            await m.reply('Chat session ended. ✅');
+            collector.stop();
+            return;
+        }
+
+        const payload = {
+            model: 'gpt-4',
+            messages: [
+                { role: 'system', content: customPrompt },
+                { role: 'user', content: userMessage }
+            ]
+        };
+
+        const req = https.request({
+            hostname: 'api.openai.com',
+            path: '/v1/chat/completions',
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${openaiKey}`,
+                'Content-Type': 'application/json'
+            }
+        }, res => {
+            let data = '';
+            res.on('data', chunk => data += chunk);
+            res.on('end', async () => {
+                try {
+                    const result = JSON.parse(data);
+                    const reply = result.choices?.[0]?.message?.content || 'No response from API.';
+                    await m.reply(reply);
+                } catch (err) {
+                    console.error('Failed to parse OpenAI response:', err);
+                    await m.reply('Failed to get a valid response from OpenAI.');
+                }
+            });
+        });
+
+        req.on('error', async err => {
+            console.error('OpenAI request error:', err);
+            await m.reply('Error communicating with the OpenAI API.');
+        });
+
+        req.write(JSON.stringify(payload));
+        req.end();
+    });
+
+    collector.on('end', async (collected, reason) => {
+        if (reason === 'time') {
+            await channel.send(
+                `<@${userId}>, your chat session has expired after 5 minutes. Please use /chat to start a new one. ⏰`
+            );
+        }
+        console.log(`Chat session with ${userId} ended. Messages collected: ${collected.size}`);
+    });
+}
+
+// ====== LOGIN ======
+client.login('your_discord_bot_token_here');
