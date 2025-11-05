@@ -10,35 +10,48 @@
 <body>
 
 <header>
-  <nav aria-label="Main navigation">
+  <nav aria-label="Main navigation" id="mainNav">
     <div class="logo">Promptly</div>
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="#welcome-section">Home</a></li>
+      <li><a href="#contact-section">Contact</a></li>
       <li><a href="tos.html">Terms of Service</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
-      <li><button id="darkModeToggle" type="button" aria-label="Toggle dark mode">🌙</button></li>
+      <li>
+        <button id="darkModeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      </li>
     </ul>
   </nav>
+  <div id="scrollProgress"></div>
 </header>
 
 <main>
-  <section aria-labelledby="welcome-heading">
+  <section id="welcome-section" class="fade-section" aria-labelledby="welcome-heading">
     <h1 id="welcome-heading">Welcome to Promptly!</h1>
     <p>Promptly is a Discord bot that lets you communicate with OpenAI/ChatGPT securely and easily.</p>
-    <a href="https://discord.com/oauth2/authorize?client_id=1435372712515338250&scope=bot&permissions=0" class="invite-button" target="_blank" rel="noopener noreferrer">Invite Promptly</a>
+    <a href="https://discord.com/oauth2/authorize?client_id=1435372712515338250&scope=bot&permissions=0" class="invite-button" target="_blank" rel="noopener noreferrer" title="Invite Promptly to your server">Invite Promptly</a>
   </section>
 
-  <section class="contact-card" aria-labelledby="contact-heading">
+  <section id="contact-section" class="contact-card fade-section" aria-labelledby="contact-heading">
     <h2 id="contact-heading">Contact the Developer</h2>
     <p>If you have questions, need support, or want to provide feedback, you can reach the developer via the following methods:</p>
     <ul>
-      <li><strong>Discord:</strong> <code>.darrk.</code></li>
-      <li><strong>Email:</strong> <a href="mailto:darrkit@gmail.com">darrkit@gmail.com</a></li>
+      <li>
+        <strong>Discord:</strong> 
+        <code id="discordTag" class="copyable" title="Click to copy">.darrk.</code>
+      </li>
+      <li>
+        <strong>Email:</strong> 
+        <a href="mailto:darrkit@gmail.com" class="copyable" title="Click to copy">darrkit@gmail.com</a>
+      </li>
     </ul>
   </section>
 </main>
 
-<button id="backToTop" aria-label="Back to top">&#8679;</button>
+<button id="backToTop" aria-label="Back to top" title="Back to top">&#8679;</button>
+
+<!-- Toast container -->
+<div id="toastContainer"></div>
 
 <script src="script.js" defer></script>
 </body>
