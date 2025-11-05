@@ -35,14 +35,32 @@ backToTop.addEventListener('click', () => {
   showToast('Scrolled to top!', 'info');
 });
 
-// FADE IN SECTIONS ON SCROLL
+// FADE IN SECTIONS AND FEATURE CARDS ON SCROLL
 const fadeSections = document.querySelectorAll('.fade-section');
-const observer = new IntersectionObserver((entries) => {
+
+const observerOptions = { threshold: 0.1 };
+
+const fadeInObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+
+      // Staggered fade-in for feature cards
+      const cards = entry.target.querySelectorAll('.feature-card');
+      if (cards.length > 0) {
+        cards.forEach((card, index) => {
+          card.style.transitionDelay = `${index * 0.2}s`;
+          card.classList.add('visible');
+        });
+      }
+
+      // Stop observing once visible
+      fadeInObserver.unobserve(entry.target);
+    }
   });
-}, { threshold: 0.2 });
-fadeSections.forEach(section => observer.observe(section));
+}, observerOptions);
+
+fadeSections.forEach(section => fadeInObserver.observe(section));
 
 // SCROLL PROGRESS BAR
 const scrollProgress = document.getElementById('scrollProgress');
