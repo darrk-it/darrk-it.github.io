@@ -7,7 +7,7 @@ This website is hosted using **GitHub Pages**. To view the live site:
 
 1. Go to the repository settings.
 2. Enable **GitHub Pages** from the main branch (root folder).
-3. The site will be available at `https://<username>.github.io/<repository>/`.
+3. The site will be available at `https://darrk-it.github.io/<repository>/`.
 
 ---
 
