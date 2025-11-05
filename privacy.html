@@ -91,18 +91,5 @@
 
 <div id="toastContainer"></div>
 <script src="script.js" defer></script>
-<script>
-  // Ensure dark mode is applied on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('darkMode') === 'true') {
-      document.body.classList.add('dark-mode');
-    }
-
-    document.getElementById('darkModeToggle').addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-    });
-  });
-</script>
 </body>
 </html>
