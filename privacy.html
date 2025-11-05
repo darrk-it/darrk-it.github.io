@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - Promptly</title>
-  <meta name="description" content="Read the Privacy Policy for Promptly, a Discord AI bot that lets you securely and easily communicate with OpenAI/ChatGPT.">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-<header>
-  <nav aria-label="Main navigation" id="mainNav">
-    <div class="logo">Promptly</div>
-    <ul>
-      <li><a href="index.html#welcome-section">Home</a></li>
-      <li><a href="tos.html">Terms of Service</a></li>
-      <li><a href="privacy.html">Privacy Policy</a></li>
-      <li>
-        <button id="darkModeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
-      </li>
-    </ul>
-  </nav>
-  <div id="scrollProgress"></div>
-</header>
-
 <main>
-  <section id="privacy-section" class="fade-section" aria-labelledby="privacy-heading">
+  <section id="privacy-section" class="fade-section tos-privacy-container" aria-labelledby="privacy-heading">
     <h1 id="privacy-heading">Privacy Policy</h1>
     <p>Last Updated: November 5, 2025</p>
 
@@ -34,26 +8,26 @@
 
     <h2>2. Information We Collect</h2>
     <ul>
-      <li>Promptly may store prompt IDs and OpenAI API keys provided by users to enable bot functionality.</li>
-      <li>Data is stored securely on a per-user basis and encrypted to protect your privacy.</li>
+      <li class="allowed"><span class="icon">✓</span>Promptly may store prompt IDs and OpenAI API keys provided by users to enable bot functionality.</li>
+      <li class="allowed"><span class="icon">✓</span>Data is stored securely on a per-user basis and encrypted to protect your privacy.</li>
     </ul>
 
     <h2>3. How We Use Your Information</h2>
     <ul>
-      <li>Data is used solely to provide bot functionality, such as running <code>/chat</code> and managing prompts.</li>
-      <li>Your information is never shared with third parties outside of what is required for OpenAI API integration.</li>
+      <li class="allowed"><span class="icon">✓</span>Data is used solely to provide bot functionality, such as running <code>/chat</code> and managing prompts.</li>
+      <li class="allowed"><span class="icon">✓</span>Your information is never shared with third parties outside of what is required for OpenAI API integration.</li>
     </ul>
 
     <h2>4. Data Retention</h2>
     <ul>
-      <li>Users may delete stored data at any time using bot commands.</li>
-      <li>We retain data only as required to provide service and comply with applicable law.</li>
+      <li class="allowed"><span class="icon">✓</span>Users may delete stored data at any time using bot commands.</li>
+      <li class="allowed"><span class="icon">✓</span>We retain data only as required to provide service and comply with applicable law.</li>
     </ul>
 
     <h2>5. Security</h2>
     <ul>
-      <li>All user data is encrypted in storage to prevent unauthorized access.</li>
-      <li>Users are responsible for securing their own OpenAI API keys and device access.</li>
+      <li class="allowed"><span class="icon">✓</span>All user data is encrypted in storage to prevent unauthorized access.</li>
+      <li class="allowed"><span class="icon">✓</span>Users are responsible for securing their own OpenAI API keys and device access.</li>
     </ul>
 
     <h2>6. Third-Party Services</h2>
@@ -64,32 +38,5 @@
 
     <h2>8. Changes to This Policy</h2>
     <p>This Privacy Policy may be updated at any time. Continued use indicates acceptance of the updated policy.</p>
-    
   </section>
 </main>
-
-<button id="backToTop" aria-label="Back to top" title="Back to top">&#8679;</button>
-
-<footer class="site-footer fade-section" aria-labelledby="footer-heading">
-  <h2 id="footer-heading" class="sr-only">Site Footer</h2>
-  <div class="footer-content">
-    <div class="footer-links">
-      <a href="index.html#welcome-section">Home</a> |
-      <a href="tos.html">Terms of Service</a> |
-      <a href="privacy.html">Privacy Policy</a>
-    </div>
-    <div class="footer-info">
-      <span>Promptly v1.0.0</span> |
-      <span>&copy; 2025 Darrk</span>
-    </div>
-    <div class="footer-contact">
-      <strong>Discord:</strong> <code id="discordTagFooter" class="copyable" title="Click to copy">.darrk.</code> |
-      <strong>Email:</strong> <a href="mailto:darrkit@gmail.com" class="copyable" title="Click to copy">darrkit@gmail.com</a>
-    </div>
-  </div>
-</footer>
-
-<div id="toastContainer"></div>
-<script src="script.js" defer></script>
-</body>
-</html>
