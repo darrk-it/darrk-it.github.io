@@ -1,130 +1,78 @@
-// Elements
+// DARK MODE TOGGLE
 const darkModeToggle = document.getElementById('darkModeToggle');
-const backToTop = document.getElementById('backToTop');
-const fadeSections = document.querySelectorAll('.fade-section');
-const scrollProgress = document.getElementById('scrollProgress');
-const toastContainer = document.getElementById('toastContainer');
-const copyables = document.querySelectorAll('.copyable');
-const inviteButton = document.querySelector('.invite-button');
 
-// --- TOAST QUEUE SYSTEM ---
-const toastQueue = [];
-let toastTimeout;
-
-function showToast(message, type = 'info') {
-  toastQueue.push({ message, type });
-  if (toastTimeout) return;
-  displayNextToast();
-}
-
-function displayNextToast() {
-  if (toastQueue.length === 0) {
-    toastTimeout = null;
-    return;
+function setDarkMode(enabled) {
+  if (enabled) {
+    document.body.classList.add('dark-mode');
+    localStorage.setItem('darkMode', 'true');
+  } else {
+    document.body.classList.remove('dark-mode');
+    localStorage.setItem('darkMode', 'false');
   }
-
-  const { message, type } = toastQueue.shift();
-  const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-
-  // Add icon
-  const icon = document.createElement('span');
-  icon.className = 'icon';
-  icon.innerHTML = type === 'success' ? '✔️' : type === 'error' ? '❌' : 'ℹ️';
-  toast.appendChild(icon);
-
-  const text = document.createElement('span');
-  text.textContent = message;
-  toast.appendChild(text);
-
-  toastContainer.appendChild(toast);
-
-  // Animate in
-  requestAnimationFrame(() => toast.classList.add('show'));
-
-  // Remove after 2s
-  toastTimeout = setTimeout(() => {
-    toast.classList.remove('show');
-    setTimeout(() => {
-      toastContainer.removeChild(toast);
-      toastTimeout = null;
-      displayNextToast();
-    }, 300);
-  }, 2000);
 }
 
-// --- DARK MODE ---
-function enableDarkMode() {
-  document.body.classList.add('dark-mode');
-  darkModeToggle.textContent = '☀️';
-  localStorage.setItem('theme', 'dark');
-  showToast('Dark mode enabled', 'info');
+// Initialize dark mode
+const savedMode = localStorage.getItem('darkMode');
+if (savedMode === 'true') {
+  setDarkMode(true);
+} else if (!savedMode) {
+  // Match system preference if no saved preference
+  setDarkMode(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
 }
-
-function disableDarkMode() {
-  document.body.classList.remove('dark-mode');
-  darkModeToggle.textContent = '🌙';
-  localStorage.setItem('theme', 'light');
-  showToast('Light mode enabled', 'info');
-}
-
-// Load theme
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') enableDarkMode();
-else if (savedTheme === 'light') disableDarkMode();
-else if (window.matchMedia('(prefers-color-scheme: dark)').matches) enableDarkMode();
 
 darkModeToggle.addEventListener('click', () => {
-  document.body.classList.contains('dark-mode') ? disableDarkMode() : enableDarkMode();
+  setDarkMode(!document.body.classList.contains('dark-mode'));
+  showToast(`Dark mode ${document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled'}`, 'info');
 });
 
-// --- BACK TO TOP ---
+// BACK TO TOP BUTTON
+const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
-  backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
-
-  // Scroll progress bar
-  const scrollTotal = document.body.scrollHeight - window.innerHeight;
-  scrollProgress.style.width = `${(window.scrollY / scrollTotal) * 100}%`;
+  backToTop.style.display = window.scrollY > 200 ? 'block' : 'none';
 });
-
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  showToast('Scrolled to top', 'info');
+  showToast('Scrolled to top!', 'info');
 });
 
-// --- FADE-IN SECTIONS ---
-function handleFadeIn() {
-  fadeSections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
-      section.classList.add('visible');
-    }
+// FADE IN SECTIONS ON SCROLL
+const fadeSections = document.querySelectorAll('.fade-section');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
   });
-}
-window.addEventListener('scroll', handleFadeIn);
-window.addEventListener('load', handleFadeIn);
+}, { threshold: 0.2 });
+fadeSections.forEach(section => observer.observe(section));
 
-// --- COPY TO CLIPBOARD ---
+// SCROLL PROGRESS BAR
+const scrollProgress = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const scroll = document.documentElement.scrollTop || document.body.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (scroll / height) * 100;
+  scrollProgress.style.width = `${scrolled}%`;
+});
+
+// COPYABLE ELEMENTS
+const copyables = document.querySelectorAll('.copyable');
 copyables.forEach(item => {
   item.addEventListener('click', () => {
     navigator.clipboard.writeText(item.textContent.trim());
-    showToast(`Copied "${item.textContent.trim()}"`, 'success');
+    showToast(`Copied "${item.textContent.trim()}"!`, 'success');
   });
 });
 
-// --- INVITE BUTTON CLICK FEEDBACK ---
-inviteButton.addEventListener('click', () => {
-  showToast('Redirecting to Discord invite...', 'info');
-});
+// TOAST NOTIFICATIONS
+const toastContainer = document.getElementById('toastContainer');
 
-// --- SMOOTH SCROLL FOR NAV LINKS ---
-document.querySelectorAll('nav a[href^="#"]').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-      showToast(`Navigated to ${target.id}`, 'info');
-    }
-  });
-});
+function showToast(message, type = 'info', duration = 3000) {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+  toastContainer.appendChild(toast);
+  setTimeout(() => toast.classList.add('visible'), 10);
+  setTimeout(() => {
+    toast.classList.remove('visible');
+    setTimeout(() => toast.remove(), 300);
+  }, duration);
+}
