@@ -1,3 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service - Promptly</title>
+  <meta name="description" content="Read the Terms of Service for Promptly, a Discord AI bot that lets you securely and easily communicate with OpenAI/ChatGPT.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <nav aria-label="Main navigation" id="mainNav">
+    <div class="logo">Promptly</div>
+    <ul>
+      <li><a href="index.html#welcome-section">Home</a></li>
+      <li><a href="tos.html">Terms of Service</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li>
+        <button id="darkModeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      </li>
+    </ul>
+  </nav>
+  <div id="scrollProgress"></div>
+</header>
+
 <main>
   <section id="tos-section" class="fade-section tos-privacy-container" aria-labelledby="tos-heading">
     <h1 id="tos-heading">Terms of Service</h1>
@@ -7,37 +33,77 @@
     <p>By using Promptly, you agree to comply with these Terms of Service. If you do not agree, you must not use the bot.</p>
 
     <h2>2. Bot Usage</h2>
-    <ul>
-      <li class="allowed"><span class="icon">✓</span>Manage prompts and interact with OpenAI/ChatGPT using <code>/chat</code>, <code>/setprompt</code>, <code>/setkey</code>, <code>/deleteprompt</code>, <code>/deletekey</code>, and <code>/help</code>.</li>
-      <li class="allowed"><span class="icon">✓</span>Users must securely store their OpenAI API keys and any personal data they provide.</li>
+    <ul class="modern-list">
+      <li>Manage prompts and interact with OpenAI/ChatGPT using <code>/chat</code>, <code>/setprompt</code>, <code>/setkey</code>, <code>/deleteprompt</code>, <code>/deletekey</code>, and <code>/help</code>.</li>
+      <li>Users must securely store their OpenAI API keys and any personal data they provide.</li>
     </ul>
 
     <h2>3. Account Data</h2>
-    <ul>
-      <li class="allowed"><span class="icon">✓</span>User data is encrypted and stored per-user.</li>
-      <li class="allowed"><span class="icon">✓</span>Users may delete their own data at any time using bot commands.</li>
-      <li class="info"><span class="icon">⚠</span>No guarantee of continuous access outside normal functionality.</li>
+    <ul class="modern-list">
+      <li>User data is encrypted and stored per-user.</li>
+      <li>Users may delete their own data at any time using bot commands.</li>
+      <li>No guarantee of continuous access outside normal functionality.</li>
     </ul>
 
     <h2>4. Prohibited Conduct</h2>
-    <ul>
-      <li class="restricted"><span class="icon">✖</span>Do not store, share, or transmit illegal, abusive, or harmful content.</li>
-      <li class="restricted"><span class="icon">✖</span>Do not bypass security measures or disrupt the bot’s service.</li>
+    <ul class="modern-list">
+      <li>Do not store, share, or transmit illegal, abusive, or harmful content.</li>
+      <li>Do not bypass security measures or disrupt the bot’s service.</li>
     </ul>
 
     <h2>5. Availability</h2>
-    <ul>
-      <li class="info"><span class="icon">⚠</span>Promptly runs on Pella with persistent storage but may experience occasional downtime.</li>
-      <li class="info"><span class="icon">⚠</span>No guarantee of uninterrupted or error-free service.</li>
+    <ul class="modern-list">
+      <li>Promptly runs on Pella with persistent storage but may experience occasional downtime.</li>
+      <li>No guarantee of uninterrupted or error-free service.</li>
     </ul>
 
     <h2>6. Liability</h2>
-    <ul>
-      <li class="info"><span class="icon">⚠</span>Use is at your own risk.</li>
-      <li class="info"><span class="icon">⚠</span>The developer is not liable for loss or damage from bot usage.</li>
+    <ul class="modern-list">
+      <li>Use is at your own risk.</li>
+      <li>The developer is not liable for loss or damage from bot usage.</li>
     </ul>
 
     <h2>7. Changes to Terms</h2>
     <p>These Terms may be updated at any time. Continued use constitutes acceptance.</p>
+    
   </section>
 </main>
+
+<button id="backToTop" aria-label="Back to top" title="Back to top">&#8679;</button>
+
+<footer class="site-footer fade-section" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Site Footer</h2>
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="index.html#welcome-section">Home</a> |
+      <a href="tos.html">Terms of Service</a> |
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-info">
+      <span>Promptly v1.0.0</span> |
+      <span>&copy; 2025 Darrk</span>
+    </div>
+    <div class="footer-contact">
+      <strong>Discord:</strong> <code id="discordTagFooter" class="copyable" title="Click to copy">.darrk.</code> |
+      <strong>Email:</strong> <a href="mailto:darrkit@gmail.com" class="copyable" title="Click to copy">darrkit@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toastContainer"></div>
+<script src="script.js" defer></script>
+<script>
+  // Ensure dark mode is applied on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+
+    document.getElementById('darkModeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+  });
+</script>
+</body>
+</html>
