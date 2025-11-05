@@ -1,330 +1,96 @@
-/* BASIC RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #fff;
-  color: #333;
-  transition: background-color 0.3s, color 0.3s;
-}
-a {
-  color: #007bff;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service - Promptly</title>
+  <meta name="description" content="Read the Terms of Service for Promptly, a Discord AI bot that lets you securely and easily communicate with OpenAI/ChatGPT.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-/* DARK MODE */
-body.dark-mode {
-  background-color: #121212;
-  color: #f0f0f0;
-}
-body.dark-mode a {
-  color: #66b2ff;
-}
+<header>
+  <nav aria-label="Main navigation" id="mainNav">
+    <div class="logo">Promptly</div>
+    <ul>
+      <li><a href="index.html#welcome-section">Home</a></li>
+      <li><a href="tos.html">Terms of Service</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li>
+        <button id="darkModeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      </li>
+    </ul>
+  </nav>
+  <div id="scrollProgress"></div>
+</header>
 
-/* NAVIGATION */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  position: sticky;
-  top: 0;
-  background-color: #fff;
-  z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  transition: background-color 0.3s, color 0.3s;
-}
-body.dark-mode nav {
-  background-color: #1e1e1e;
-}
-nav .logo {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 15px;
-}
-nav button {
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-}
+<main>
+  <section id="tos-section" class="fade-section tos-privacy-container" aria-labelledby="tos-heading">
+    <h1 id="tos-heading">Terms of Service</h1>
+    <p>Last Updated: <time datetime="2025-11-05">November 5, 2025</time></p>
 
-/* SCROLL PROGRESS BAR */
-#scrollProgress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 4px;
-  background: #007bff;
-  width: 0%;
-  z-index: 1001;
-  transition: width 0.2s ease;
-}
+    <h2>1. Acceptance of Terms</h2>
+    <p>By using Promptly, you agree to comply with these Terms of Service. If you do not agree, you must not use the bot.</p>
 
-/* SECTIONS */
-.section, .fade-section {
-  padding: 50px 20px;
-}
-.fade-section {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.fade-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    <h2>2. Bot Usage</h2>
+    <ul class="modern-list">
+      <li>Manage prompts and interact with OpenAI/ChatGPT using <code>/chat</code>, <code>/setprompt</code>, <code>/setkey</code>, <code>/deleteprompt</code>, <code>/deletekey</code>, and <code>/help</code>.</li>
+      <li>Users must securely store their OpenAI API keys and any personal data they provide.</li>
+    </ul>
 
-/* BUTTONS */
-.invite-button, #backToTop {
-  display: inline-block;
-  padding: 10px 20px;
-  background: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  text-align: center;
-  margin-top: 10px;
-  transition: background 0.3s;
-}
-.invite-button:hover, #backToTop:hover {
-  background: #0056b3;
-}
-#backToTop {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  display: none;
-  font-size: 1.5rem;
-  z-index: 1000;
-}
+    <h2>3. Account Data</h2>
+    <ul class="modern-list">
+      <li>User data is encrypted and stored per-user.</li>
+      <li>Users may delete their own data at any time using bot commands.</li>
+      <li>No guarantee of continuous access outside normal functionality.</li>
+    </ul>
 
-/* CONTACT CARD */
-.contact-card ul {
-  list-style: none;
-  padding-left: 0;
-}
-.contact-card li {
-  margin-bottom: 10px;
-}
+    <h2>4. Prohibited Conduct</h2>
+    <ul class="modern-list">
+      <li>Do not store, share, or transmit illegal, abusive, or harmful content.</li>
+      <li>Do not bypass security measures or disrupt the bot’s service.</li>
+    </ul>
 
-/* COPYABLE ELEMENTS */
-.copyable {
-  cursor: pointer;
-  background: #f0f0f0;
-  padding: 2px 6px;
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-.copyable:hover {
-  background: #ddd;
-}
-body.dark-mode .copyable {
-  background: #2c2c2c;
-}
-body.dark-mode .copyable:hover {
-  background: #3a3a3a;
-}
+    <h2>5. Availability</h2>
+    <ul class="modern-list">
+      <li>Promptly runs on Pella with persistent storage but may experience occasional downtime.</li>
+      <li>No guarantee of uninterrupted or error-free service.</li>
+    </ul>
 
-/* TOAST NOTIFICATIONS */
-#toastContainer {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.toast {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 15px;
-  border-radius: 6px;
-  opacity: 0;
-  transform: translateX(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.toast.success { background-color: #28a745; }
-.toast.info { background-color: #17a2b8; }
-.toast.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
+    <h2>6. Liability</h2>
+    <ul class="modern-list">
+      <li>Use is at your own risk.</li>
+      <li>The developer is not liable for loss or damage from bot usage.</li>
+    </ul>
 
-/* FOOTER */
-.site-footer {
-  background-color: #f5f5f5;
-  color: #333;
-  padding: 20px;
-  text-align: center;
-  font-size: 0.9rem;
-  transition: background-color 0.3s, color 0.3s;
-}
-body.dark-mode .site-footer {
-  background-color: #1e1e1e;
-  color: #f0f0f0;
-}
-.site-footer a {
-  color: inherit;
-  text-decoration: none;
-  margin: 0 5px;
-}
-.site-footer a:hover {
-  text-decoration: underline;
-}
-.site-footer .footer-content {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  align-items: center;
-}
+    <h2>7. Changes to Terms</h2>
+    <p>These Terms may be updated at any time. Continued use constitutes acceptance.</p>
 
-/* INVISIBLE HEADER FOR SCREEN READERS */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  border: 0;
-}
+  </section>
+</main>
 
-/* =========================
-   TOS & PRIVACY PAGES - Modern Icon Lists
-========================= */
-.tos-privacy-container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 30px 25px;
-  background-color: #fafafa;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-  line-height: 1.8;
-  transition: background-color 0.3s, color 0.3s;
-}
-body.dark-mode .tos-privacy-container {
-  background-color: #1f1f1f;
-  color: #e0e0e0;
-}
-.tos-privacy-container h1,
-.tos-privacy-container h2,
-.tos-privacy-container h3 {
-  margin-bottom: 20px;
-  font-weight: 600;
-  color: #222;
-}
-body.dark-mode .tos-privacy-container h1,
-body.dark-mode .tos-privacy-container h2,
-body.dark-mode .tos-privacy-container h3 {
-  color: #f0f0f0;
-}
-.tos-privacy-container p {
-  margin-bottom: 16px;
-  font-size: 1rem;
-  color: #333;
-}
-body.dark-mode .tos-privacy-container p {
-  color: #ccc;
-}
-/* Modern icon list */
-.tos-privacy-container ul {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 16px;
-}
-.tos-privacy-container ul li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 10px;
-  position: relative;
-  padding-left: 28px;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #333;
-}
-body.dark-mode .tos-privacy-container ul li {
-  color: #e0e0e0;
-}
-.tos-privacy-container ul li::before {
-  content: '•'; /* fallback bullet */
-  position: absolute;
-  left: 0;
-  top: 0.1em;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-.tos-privacy-container ul li.allowed::before { content: '✓'; color: #28a745; }
-.tos-privacy-container ul li.restricted::before { content: '✖'; color: #dc3545; }
-.tos-privacy-container ul li.info::before { content: '⚠'; color: #ffc107; }
-.tos-privacy-container a {
-  color: #007bff;
-  text-decoration: underline;
-}
-body.dark-mode .tos-privacy-container a { color: #80c0ff; }
-.tos-privacy-container a:hover,
-.tos-privacy-container a:focus { color: #0056b3; text-decoration: none; }
-body.dark-mode .tos-privacy-container a:hover,
-body.dark-mode .tos-privacy-container a:focus { color: #3399ff; }
-.tos-privacy-section {
-  margin-bottom: 30px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e0e0e0;
-}
-body.dark-mode .tos-privacy-section {
-  border-bottom: 1px solid #333;
-}
-.tos-privacy-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 25px;
-}
-.tos-privacy-buttons button {
-  padding: 10px 22px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  background-color: #007bff;
-  color: #fff;
-  transition: background-color 0.3s, transform 0.2s;
-}
-.tos-privacy-buttons button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-.tos-privacy-buttons button:focus-visible {
-  outline: 2px solid #007bff;
-  outline-offset: 2px;
-}
+<button id="backToTop" type="button" aria-label="Back to top" title="Back to top">&#8679;</button>
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  .tos-privacy-container {
-    padding: 20px 15px;
-    margin: 20px auto;
-  }
-  .tos-privacy-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .tos-privacy-container ul li {
-    font-size: 0.95rem;
-    padding-left: 26px;
-  }
-}
+<footer class="site-footer fade-section" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Site Footer</h2>
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="index.html#welcome-section">Home</a> |
+      <a href="tos.html">Terms of Service</a> |
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-info">
+      <span>Promptly v1.0.0</span> |
+      <span>&copy; 2025 Darrk</span>
+    </div>
+    <div class="footer-contact">
+      <strong>Discord:</strong> <code id="discordTagFooter" class="copyable" title="Click to copy">.darrk.</code> |
+      <strong>Email:</strong> <a href="mailto:darrkit@gmail.com" class="copyable" title="Click to copy">darrkit@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toastContainer"></div>
+<script src="script.js" defer></script>
+</body>
+</html>
