@@ -5,30 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Service - Promptly</title>
   <meta name="description" content="Read the Terms of Service for Promptly, a Discord AI bot that lets you securely and easily communicate with OpenAI/ChatGPT.">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css" as="style" onload="this.rel='stylesheet'">
 </head>
 <body>
 
 <header>
   <nav aria-label="Main navigation" id="mainNav">
     <div class="logo">Promptly</div>
-    <ul>
-      <li><a href="index.html#welcome-section">Home</a></li>
-      <li><a href="index.html#contact-section">Contact</a></li>
-      <li><a href="tos.html">Terms of Service</a></li>
-      <li><a href="privacy.html">Privacy Policy</a></li>
-      <li>
+    <ul role="menubar">
+      <li role="none"><a role="menuitem" href="index.html#welcome-section">Home</a></li>
+      <li role="none"><a role="menuitem" href="index.html#contact-section">Contact</a></li>
+      <li role="none"><a role="menuitem" href="tos.html">Terms of Service</a></li>
+      <li role="none"><a role="menuitem" href="privacy.html">Privacy Policy</a></li>
+      <li role="none">
         <button id="darkModeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
       </li>
     </ul>
   </nav>
-  <div id="scrollProgress"></div>
+  <div id="scrollProgress" aria-hidden="true"></div>
 </header>
 
 <main>
   <section id="tos-section" class="fade-section" aria-labelledby="tos-heading">
     <h1 id="tos-heading">Terms of Service</h1>
-    <p>Last Updated: November 5, 2025</p>
+    <p>Last Updated: <time datetime="2025-11-05">November 5, 2025</time></p>
 
     <h2>1. Acceptance of Terms</h2>
     <p>By using Promptly, you agree to comply with these Terms of Service. If you do not agree, you must not use the bot.</p>
@@ -66,21 +68,17 @@
 
     <h2>7. Changes to Terms</h2>
     <p>These Terms may be updated at any time. Continued use constitutes acceptance.</p>
-
-    <h2>8. Contact</h2>
-    <ul>
-      <li><strong>Discord:</strong> <code id="discordTag" class="copyable" title="Click to copy">.darrk.</code></li>
-      <li><strong>Email:</strong> <a href="mailto:darrkit@gmail.com" class="copyable" title="Click to copy">darrkit@gmail.com</a></li>
+    
     </ul>
   </section>
 </main>
 
-<button id="backToTop" aria-label="Back to top" title="Back to top">&#8679;</button>
+<button id="backToTop" type="button" aria-label="Back to top" title="Back to top">&#8679;</button>
 
 <footer class="site-footer fade-section" aria-labelledby="footer-heading">
   <h2 id="footer-heading" class="sr-only">Site Footer</h2>
   <div class="footer-content">
-    <div class="footer-links">
+    <div class="footer-links" role="navigation" aria-label="Footer navigation">
       <a href="index.html#welcome-section">Home</a> |
       <a href="index.html#contact-section">Contact</a> |
       <a href="tos.html">Terms of Service</a> |
@@ -92,12 +90,12 @@
     </div>
     <div class="footer-contact">
       <strong>Discord:</strong> <code id="discordTagFooter" class="copyable" title="Click to copy">.darrk.</code> |
-      <strong>Email:</strong> <a href="mailto:darrkit@gmail.com" class="copyable" title="Click to copy">darrkit@gmail.com</a>
+      <strong>Email:</strong> <a href="mailto:darrkit@gmail.com" class="copyable" title="Click to copy" rel="noopener noreferrer">darrkit@gmail.com</a>
     </div>
   </div>
 </footer>
 
-<div id="toastContainer"></div>
+<div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
 <script src="script.js" defer></script>
 </body>
 </html>
