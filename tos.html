@@ -35,41 +35,39 @@
 
     <h2>2. Bot Usage</h2>
     <ul>
-      <li>Promptly allows users to manage prompts and interact with OpenAI/ChatGPT using commands like <code>/chat</code>, <code>/setprompt</code>, <code>/setkey</code>, <code>/deleteprompt</code>, <code>/deletekey</code>, and <code>/help</code>.</li>
-      <li>Users are responsible for securely storing their OpenAI API keys and any personal data they provide.</li>
+      <li>Manage prompts and interact with OpenAI/ChatGPT using <code>/chat</code>, <code>/setprompt</code>, <code>/setkey</code>, <code>/deleteprompt</code>, <code>/deletekey</code>, and <code>/help</code>.</li>
+      <li>Users must securely store their OpenAI API keys and any personal data they provide.</li>
     </ul>
 
     <h2>3. Account Data</h2>
     <ul>
-      <li>User data is stored securely and encrypted on a per-user basis.</li>
-      <li>Users may delete their own data at any time using the bot commands.</li>
-      <li>Continuous access to specific data is not guaranteed outside normal bot functionality.</li>
+      <li>User data is encrypted and stored per-user.</li>
+      <li>Users may delete their own data at any time using bot commands.</li>
+      <li>No guarantee of continuous access outside normal functionality.</li>
     </ul>
 
     <h2>4. Prohibited Conduct</h2>
     <ul>
-      <li>Do not use Promptly to store, share, or transmit illegal, abusive, or harmful content.</li>
-      <li>Do not attempt to bypass security measures, including encryption and ephemeral messaging.</li>
-      <li>Do not attempt to manipulate or disrupt the bot’s service or infrastructure.</li>
+      <li>Do not store, share, or transmit illegal, abusive, or harmful content.</li>
+      <li>Do not bypass security measures or disrupt the bot’s service.</li>
     </ul>
 
     <h2>5. Availability</h2>
     <ul>
-      <li>Promptly runs on Pella with persistent storage and is intended to operate continuously; however, occasional downtime may occur.</li>
-      <li>No guarantee is made regarding uninterrupted or error-free service.</li>
+      <li>Promptly runs on Render with persistent storage but may experience occasional downtime.</li>
+      <li>No guarantee of uninterrupted or error-free service.</li>
     </ul>
 
     <h2>6. Liability</h2>
     <ul>
-      <li>Use of Promptly is at your own risk.</li>
-      <li>The developer is not liable for any loss, misuse, or damage resulting from the use of the bot.</li>
+      <li>Use is at your own risk.</li>
+      <li>The developer is not liable for loss or damage from bot usage.</li>
     </ul>
 
     <h2>7. Changes to Terms</h2>
-    <p>These Terms may be updated at any time. Continued use of the bot constitutes acceptance of the updated Terms of Service.</p>
+    <p>These Terms may be updated at any time. Continued use constitutes acceptance.</p>
 
     <h2>8. Contact</h2>
-    <p>If you have questions about these Terms, you can contact the developer via:</p>
     <ul>
       <li><strong>Discord:</strong> <code id="discordTag" class="copyable" title="Click to copy">.darrk.</code></li>
       <li><strong>Email:</strong> <a href="mailto:darrkit@gmail.com" class="copyable" title="Click to copy">darrkit@gmail.com</a></li>
@@ -79,9 +77,27 @@
 
 <button id="backToTop" aria-label="Back to top" title="Back to top">&#8679;</button>
 
-<!-- Toast container -->
-<div id="toastContainer"></div>
+<footer class="site-footer fade-section" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Site Footer</h2>
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="index.html#welcome-section">Home</a> |
+      <a href="index.html#contact-section">Contact</a> |
+      <a href="tos.html">Terms of Service</a> |
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-info">
+      <span>Promptly v1.0.0</span> |
+      <span>&copy; 2025 Darrk</span>
+    </div>
+    <div class="footer-contact">
+      <strong>Discord:</strong> <code id="discordTagFooter" class="copyable" title="Click to copy">.darrk.</code> |
+      <strong>Email:</strong> <a href="mailto:darrkit@gmail.com" class="copyable" title="Click to copy">darrkit@gmail.com</a>
+    </div>
+  </div>
+</footer>
 
+<div id="toastContainer"></div>
 <script src="script.js" defer></script>
 </body>
 </html>
