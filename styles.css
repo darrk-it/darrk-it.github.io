@@ -1,42 +1,22 @@
 /* =========================
-   MODERN LISTS FOR TOS & PRIVACY - Alternative Icon Style
+   CLEAN LISTS FOR TOS & PRIVACY
 ========================= */
 .modern-list {
-  list-style: none;
-  padding-left: 0;
+  list-style: disc; /* standard bullet points */
+  padding-left: 20px; /* proper indent */
   margin-left: 0;
+  margin-bottom: 16px;
 }
 .modern-list li {
-  position: relative;
-  padding-left: 28px; /* space for the icon */
-  margin-bottom: 12px;
   line-height: 1.6;
   color: #333; /* default text color */
+  margin-bottom: 12px;
+  padding-left: 0; /* no extra space for icons */
+  position: static; /* remove icon positioning */
 }
 body.dark-mode .modern-list li {
   color: #e0e0e0;
 }
-.modern-list li::before {
-  content: "✔"; /* checkmark icon by default */
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-weight: bold;
-  color: #007bff;
-}
-body.dark-mode .modern-list li::before {
-  color: #66b2ff;
-}
-
-/* Optional: specific icon types (match existing TOS styling) */
-.modern-list li.allowed::before { content: "✓"; color: #28a745; }
-body.dark-mode .modern-list li.allowed::before { color: #5cd65c; }
-
-.modern-list li.restricted::before { content: "✖"; color: #dc3545; }
-body.dark-mode .modern-list li.restricted::before { color: #ff6b6b; }
-
-.modern-list li.info::before { content: "⚠"; color: #ffc107; }
-body.dark-mode .modern-list li.info::before { color: #ffd966; }
 
 /* Links inside modern-list */
 .modern-list a {
