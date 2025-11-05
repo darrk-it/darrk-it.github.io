@@ -16,7 +16,6 @@ const savedMode = localStorage.getItem('darkMode');
 if (savedMode === 'true') {
   setDarkMode(true);
 } else if (!savedMode) {
-  // Match system preference if no saved preference
   setDarkMode(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
 }
 
@@ -35,7 +34,7 @@ backToTop.addEventListener('click', () => {
   showToast('Scrolled to top!', 'info');
 });
 
-// FADE IN SECTIONS AND FEATURE CARDS ON SCROLL
+// FADE-IN SECTIONS & FEATURE CARDS
 const fadeSections = document.querySelectorAll('.fade-section');
 
 const observerOptions = { threshold: 0.1 };
@@ -54,7 +53,6 @@ const fadeInObserver = new IntersectionObserver((entries) => {
         });
       }
 
-      // Stop observing once visible
       fadeInObserver.unobserve(entry.target);
     }
   });
