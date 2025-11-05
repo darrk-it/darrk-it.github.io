@@ -4,66 +4,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Service - Promptly</title>
+  <meta name="description" content="Read the Terms of Service for Promptly, a Discord AI bot that lets you securely and easily communicate with OpenAI/ChatGPT.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-  <nav>
+  <nav aria-label="Main navigation" id="mainNav">
     <div class="logo">Promptly</div>
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#welcome-section">Home</a></li>
+      <li><a href="index.html#contact-section">Contact</a></li>
       <li><a href="tos.html">Terms of Service</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
-      <li><button id="darkModeToggle">🌙</button></li>
+      <li>
+        <button id="darkModeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      </li>
     </ul>
   </nav>
+  <div id="scrollProgress"></div>
 </header>
 
-<section id="tos" class="section">
-  <h1>Terms of Service</h1>
-  <p>Last Updated: November 4, 2025</p>
+<main>
+  <section id="tos-section" class="fade-section" aria-labelledby="tos-heading">
+    <h1 id="tos-heading">Terms of Service</h1>
+    <p>Last Updated: November 5, 2025</p>
 
-  <h2>1. Bot Usage</h2>
-  <ul>
-    <li>The bot allows users to save prompt IDs and OpenAI API keys, run <code>/chat</code>, and manage prompts with commands like <code>/setprompt</code>, <code>/setkey</code>, <code>/deleteprompt</code>, <code>/deletekey</code>, and <code>/help</code>.</li>
-    <li>Users are responsible for ensuring that any data they provide, including OpenAI API keys, is accurate and securely managed on their side.</li>
-  </ul>
+    <h2>1. Acceptance of Terms</h2>
+    <p>By using Promptly, you agree to comply with these Terms of Service. If you do not agree, you must not use the bot.</p>
 
-  <h2>2. Account and Data</h2>
-  <ul>
-    <li>Each user’s data is stored per-user and encrypted.</li>
-    <li>Users may delete their data at any time using the provided commands.</li>
-    <li>We do not guarantee continuous access to any specific data outside normal bot functionality.</li>
-  </ul>
+    <h2>2. Bot Usage</h2>
+    <ul>
+      <li>Promptly allows users to manage prompts and interact with OpenAI/ChatGPT using commands like <code>/chat</code>, <code>/setprompt</code>, <code>/setkey</code>, <code>/deleteprompt</code>, <code>/deletekey</code>, and <code>/help</code>.</li>
+      <li>Users are responsible for securely storing their OpenAI API keys and any personal data they provide.</li>
+    </ul>
 
-  <h2>3. Prohibited Uses</h2>
-  <ul>
-    <li>Users may not use the bot to store or transmit illegal, harmful, or abusive content.</li>
-    <li>Users must not attempt to bypass security features, including encryption or ephemeral messaging.</li>
-  </ul>
+    <h2>3. Account Data</h2>
+    <ul>
+      <li>User data is stored securely and encrypted on a per-user basis.</li>
+      <li>Users may delete their own data at any time using the bot commands.</li>
+      <li>Continuous access to specific data is not guaranteed outside normal bot functionality.</li>
+    </ul>
 
-  <h2>4. Bot Availability</h2>
-  <ul>
-    <li>The bot runs on Render with persistent storage and is designed to operate 24/7, but downtime may occur due to maintenance or unforeseen issues.</li>
-    <li>We do not guarantee uninterrupted or error-free service.</li>
-  </ul>
+    <h2>4. Prohibited Conduct</h2>
+    <ul>
+      <li>Do not use Promptly to store, share, or transmit illegal, abusive, or harmful content.</li>
+      <li>Do not attempt to bypass security measures, including encryption and ephemeral messaging.</li>
+      <li>Do not attempt to manipulate or disrupt the bot’s service or infrastructure.</li>
+    </ul>
 
-  <h2>5. Liability</h2>
-  <ul>
-    <li>Use of the bot is at your own risk.</li>
-    <li>The bot’s developer is not responsible for any loss, misuse, or damage resulting from the use of the bot.</li>
-  </ul>
+    <h2>5. Availability</h2>
+    <ul>
+      <li>Promptly runs on Pella with persistent storage and is intended to operate continuously; however, occasional downtime may occur.</li>
+      <li>No guarantee is made regarding uninterrupted or error-free service.</li>
+    </ul>
 
-  <h2>6. Changes to Terms</h2>
-  <p>Terms may be updated at any time. Continued use of the bot indicates acceptance of the updated terms.</p>
+    <h2>6. Liability</h2>
+    <ul>
+      <li>Use of Promptly is at your own risk.</li>
+      <li>The developer is not liable for any loss, misuse, or damage resulting from the use of the bot.</li>
+    </ul>
 
-  <h2>7. Contact</h2>
-  <p>For questions about these Terms, contact the developer via Discord or the official website.</p>
-</section>
+    <h2>7. Changes to Terms</h2>
+    <p>These Terms may be updated at any time. Continued use of the bot constitutes acceptance of the updated Terms of Service.</p>
 
-<button id="backToTop">&#8679;</button>
+    <h2>8. Contact</h2>
+    <p>If you have questions about these Terms, you can contact the developer via:</p>
+    <ul>
+      <li><strong>Discord:</strong> <code id="discordTag" class="copyable" title="Click to copy">.darrk.</code></li>
+      <li><strong>Email:</strong> <a href="mailto:darrkit@gmail.com" class="copyable" title="Click to copy">darrkit@gmail.com</a></li>
+    </ul>
+  </section>
+</main>
 
-<script src="script.js"></script>
+<button id="backToTop" aria-label="Back to top" title="Back to top">&#8679;</button>
+
+<!-- Toast container -->
+<div id="toastContainer"></div>
+
+<script src="script.js" defer></script>
 </body>
 </html>
