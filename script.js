@@ -1,37 +1,45 @@
-// -------------------- Dark Mode Toggle --------------------
-const darkModeButtons = document.querySelectorAll("#darkModeToggle");
+const darkModeToggle = document.getElementById('darkModeToggle');
+const backToTop = document.getElementById('backToTop');
 
-// Apply saved dark mode preference on page load
-if (localStorage.getItem("darkMode") === "enabled") {
-    document.body.classList.add("dark-mode");
+// Function to enable dark mode
+function enableDarkMode() {
+  document.body.classList.add('dark-mode');
+  darkModeToggle.textContent = '☀️';
+  localStorage.setItem('theme', 'dark');
 }
 
-darkModeButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
+// Function to disable dark mode
+function disableDarkMode() {
+  document.body.classList.remove('dark-mode');
+  darkModeToggle.textContent = '🌙';
+  localStorage.setItem('theme', 'light');
+}
 
-        // Save the preference
-        if (document.body.classList.contains("dark-mode")) {
-            localStorage.setItem("darkMode", "enabled");
-        } else {
-            localStorage.setItem("darkMode", "disabled");
-        }
-    });
+// Auto-detect system preference if no saved theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  enableDarkMode();
+} else if (savedTheme === 'light') {
+  disableDarkMode();
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  enableDarkMode();
+}
+
+// Toggle dark mode on button click
+darkModeToggle.addEventListener('click', () => {
+  if (document.body.classList.contains('dark-mode')) {
+    disableDarkMode();
+  } else {
+    enableDarkMode();
+  }
 });
 
-// -------------------- Back-to-Top Button --------------------
-const backToTopButtons = document.querySelectorAll("#backToTop");
+// Show/hide back-to-top button
+window.addEventListener('scroll', () => {
+  backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+});
 
-backToTopButtons.forEach(btn => {
-    const toggleButton = () => {
-        if (window.scrollY > 300) btn.style.display = "block";
-        else btn.style.display = "none";
-    };
-
-    toggleButton();
-    window.addEventListener("scroll", toggleButton);
-
-    btn.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+// Smooth scroll to top
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
