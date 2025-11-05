@@ -1,1 +1,1 @@
-# darrk-it.github.io
+# Promptly.github.io
