@@ -27,42 +27,55 @@
 <main>
   <section id="privacy-section" class="fade-section tos-privacy-container" aria-labelledby="privacy-heading">
     <h1 id="privacy-heading">Privacy Policy</h1>
-    <p>Last Updated: November 5, 2025</p>
+    <p>Last Updated: November 12, 2025</p>
 
     <h2>1. Introduction</h2>
     <p>This Privacy Policy explains how Promptly collects, uses, and protects your data when you interact with the bot.</p>
 
     <h2>2. Information We Collect</h2>
     <ul class="modern-list">
-      <li>Promptly may store prompts and OpenAI API keys provided by users to enable bot functionality.</li>
-      <li>Data is stored securely on a per-user basis and encrypted to protect your privacy.</li>
+      <li>Promptly stores prompts and OpenAI API keys provided by users to enable bot functionality.</li>
+      <li>Data is stored securely on a per-user basis, encrypted, and only accessible to authorized bot processes.</li>
+      <li>We also log anonymized activity for observability and to monitor bot health, errors, and usage patterns.</li>
     </ul>
 
     <h2>3. How We Use Your Information</h2>
     <ul class="modern-list">
-      <li>Data is used solely to provide bot functionality, such as running <code>/chat</code> and managing prompts.</li>
-      <li>Your information is never shared with third parties outside of what is required for OpenAI API integration.</li>
+      <li>Data is used solely to provide bot functionality, such as running <code>/chat</code>, managing prompts, and validating API keys.</li>
+      <li>Your information is never shared with third parties except as required for OpenAI API integration.</li>
+      <li>We may send automated reminders to users to rotate or confirm unused API keys as part of secrets lifecycle management.</li>
     </ul>
 
     <h2>4. Data Retention</h2>
     <ul class="modern-list">
       <li>Users may delete stored data at any time using bot commands.</li>
+      <li>Inactive API keys may trigger automated reminders and may be flagged for rotation or deletion to maintain security.</li>
       <li>We retain data only as required to provide service and comply with applicable law.</li>
     </ul>
 
     <h2>5. Security</h2>
     <ul class="modern-list">
-      <li>All user data is encrypted in storage to prevent unauthorized access.</li>
+      <li>All user data, including API keys and prompts, is encrypted at rest.</li>
+      <li>API key usage is monitored for observability and lifecycle management purposes.</li>
       <li>Users are responsible for securing their own OpenAI API keys and device access.</li>
     </ul>
 
-    <h2>6. Third-Party Services</h2>
+    <h2>6. Secrets Management & Rotation</h2>
+    <ul class="modern-list">
+      <li>API keys provided by users are stored encrypted and tied to your Discord account.</li>
+      <li>The bot monitors key usage and may send automated reminders if a key has not been used for a set period (e.g., 30 days).</li>
+      <li>Keys may be flagged for rotation or optional deletion to reduce the risk of long-lived unused secrets.</li>
+      <li>Users are encouraged to rotate keys regularly and can delete or update their keys anytime using <code>/deletekey</code> or <code>/setkey</code>.</li>
+      <li>This lifecycle management ensures that stale keys do not remain in storage unnecessarily, enhancing security.</li>
+    </ul>
+
+    <h2>7. Third-Party Services</h2>
     <p>Promptly uses the OpenAI API to provide AI functionality. Your data may be processed by OpenAI as required to fulfill requests.</p>
 
-    <h2>7. Children’s Privacy</h2>
+    <h2>8. Children’s Privacy</h2>
     <p>Promptly is not intended for children under the age of 13. We do not knowingly collect personal information from children.</p>
 
-    <h2>8. Changes to This Policy</h2>
+    <h2>9. Changes to This Policy</h2>
     <p>This Privacy Policy may be updated at any time. Continued use indicates acceptance of the updated policy.</p>
     
   </section>
